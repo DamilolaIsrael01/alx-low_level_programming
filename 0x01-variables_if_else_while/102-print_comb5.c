@@ -1,43 +1,44 @@
 #include <stdio.h>
-
+#include <unistd.h>
 /**
- * main - prints all possible combinations of two two-digit numbers
- *
- * Return: Always 0.
+ * main - Entry point
+ * Description: prints all possible combination of 2-digit numbers
+ * Return: Always 0 (success)
  */
-
 int main(void)
 {
-int i, j, k, l;
+	int c, i, k, j;
 
-for (i = 0; i <= 9; i++)
-{
-for (j = 0; j <= 9; j++)
-{
-for (k = 0; k <= 9; k++)
-{
-for (l = 0; l <= 9; l++)
-{
-if ((i < k) || ((i == k) && (j < l)))
-{
-putchar(i + '0');
-putchar(j + '0');
-putchar(' ');
-putchar(k + '0');
-putchar(l + '0');
+	for (c = 48; c <= 57; c++)
+	{
+		for (i = 48; i <= 57; i++)
+		{
+			for (k = 48; k <= 57; k++)
+			{
+				for (j = 48; j <= 57; j++)
+				{
+				if (((k + j) > (c + i) &&  k >= c) || c < k)
+				{
+					putchar(c);
+					putchar(i);
+					putchar(' ');
+					putchar(k);
+					putchar(j);
 
-if (i != 9 || j != 8 || k != 9 || l != 9)
-{
-putchar(',');
-putchar(' ');
-}
-}
-}
-}
-}
-}
-
-putchar('\n');
-
-return (0);
+					if (c + i + k + j == 227 && c == 57)
+					{
+					break;
+					}
+					else
+					{
+					putchar(',');
+					putchar(' ');
+					}
+				}
+				}
+			}
+		}
+	}
+	putchar('\n');
+	return (0);
 }
